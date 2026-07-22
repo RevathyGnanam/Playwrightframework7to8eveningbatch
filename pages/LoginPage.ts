@@ -60,12 +60,5 @@ export class LoginPage {
        
         return(this.txtErrorMessage.textContent());
     }
-
-
-
-
-
-
-
 }
 
