@@ -14,9 +14,9 @@
  */
 
 import { test, expect, Page } from '@playwright/test';
-import { RegistrationPage } from '../pages/RegistrationPage';
-import { HomePage } from '../pages/HomePage';
-import { RandomDataUtil } from '../utils/randomDataGenerator';
+import { RegistrationPage } from '../pages/Registration.ts'
+import { Homepage } from '../pages/HomePage.ts'
+import { RandomDataUtil } from '../utils/RandomDataUtils.ts'
 import { TestConfig } from '../test.config';
 import { LogoutPage } from '../pages/LogoutPage';
 import { LoginPage } from '../pages/LoginPage';
@@ -31,7 +31,7 @@ test('execute end-to-end test flow @end-to-end', async ({ page }) => {
     const config = new TestConfig();
 
     // Navigate to the application's home page
-    await page.goto(config.appUrl);
+    await page.goto(config.appurl);
 
     // Step 1: Register a new account and capture the generated email
     let registeredEmail: string = await performRegistration(page);
@@ -60,7 +60,7 @@ test('execute end-to-end test flow @end-to-end', async ({ page }) => {
 
 // Function to register a new user account
 async function performRegistration(page: Page): Promise<string> {
-    const homePage = new HomePage(page);
+    const homePage = new Homepage(page);
     await homePage.clickMyAccount();       // Click "My Account" link
     await homePage.clickRegister();        // Click "Register" option
 
@@ -105,9 +105,9 @@ async function performLogout(page: Page) {
 // Function to log in using the registered email
 async function performLogin(page: Page, email: string) {
     const config = new TestConfig();
-    await page.goto(config.appUrl);  // Reload home page
+    await page.goto(config.appurl);  // Reload home page
 
-    const homePage = new HomePage(page);
+    const homePage = new Homepage(page);
     await homePage.clickMyAccount();
     await homePage.clickLogin();
 
@@ -122,7 +122,7 @@ async function performLogin(page: Page, email: string) {
 
 // Function to search for a product and add it to cart
 async function addProductToCart(page: Page) {
-    const homePage = new HomePage(page);
+    const homePage = new Homepage(page);
 
     const config = new TestConfig();
     const productName: string = config.productName;
