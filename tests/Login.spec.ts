@@ -46,10 +46,6 @@ test('Login using test config file @master',async({page})=>{
     expect(isloggin).toBeTruthy();
 
     console.log(await accpage.getPageTitle())
-
-
-
-
 })
 
 
